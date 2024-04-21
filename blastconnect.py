@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.action_chains import ActionChains
 
 options = Options()
 options.add_experimental_option("detach", True)
@@ -33,7 +34,11 @@ login_button = driver.find_element(By.CSS_SELECTOR,".btn-primary")
 # Mimic pressing the Enter key to submit the login form
 # password.send_keys(Keys.RETURN)
 login_button.click()
-time.sleep(3)
+time.sleep(10)
+
+element_to_hover = driver.find_element(By.XPATH,"//*[@id='app']/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div[1]/div")
+actions = ActionChains(driver)
+actions.move_to_element(element_to_hover).click().perform()
 
 #driver.quit()
 
